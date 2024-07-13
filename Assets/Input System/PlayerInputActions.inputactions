@@ -158,7 +158,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "New action",
+                    "name": "Shoot",
                     "type": "Button",
                     "id": "4115b3e9-2dec-4f6f-a258-7a42f8ec6b6f",
                     "expectedControlType": "Button",
@@ -263,7 +263,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -274,7 +274,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-   // public GameObject bulletPrefab;
-    //public Transform bulletSpawnPoint;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawnPoint;
 
     private Vector2 moveInput;
 
@@ -14,14 +14,16 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    // This method must match the signature expected by the PlayerInput component
+    public void OnMove(InputValue value)
     {
-        moveInput = context.ReadValue<Vector2>();
+        moveInput = value.Get<Vector2>();
     }
 
-    public void OnShoot(InputAction.CallbackContext context)
+    // This method must match the signature expected by the PlayerInput component
+    public void OnShoot(InputValue value)
     {
-        if (context.performed)
+        if (value.isPressed)
         {
             Shoot();
         }
