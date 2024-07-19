@@ -7,9 +7,6 @@ using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
-    #region Script Role
-    // Manages equipping and positioning of the weapon.
-    #endregion
     [SerializeField] Weapon EquippedWeapon;
     [SerializeField] Transform WeaponSocket;
 
@@ -36,7 +33,7 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
-    public void HandleWeaponDrop(Weapon weapon)
+   /* public void HandleWeaponDrop(Weapon weapon)
     {
         if (EquippedWeapon == weapon)
         {
@@ -45,5 +42,5 @@ public class EquipmentManager : MonoBehaviour
             weapon.transform.parent = null;
             // Add any additional logic for dropping the weapon (e.g., disabling weapon-specific scripts)
         }
-    }
+    }*/
 }

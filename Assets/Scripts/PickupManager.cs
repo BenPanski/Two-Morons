@@ -15,15 +15,26 @@ public class PickupManager : MonoBehaviour
     private void FindRefrences()
     {
         // Find the EquipmentManager on the player
-        equipmentManager = GetComponentInParent<EquipmentManager>();
+       
         if (equipmentManager == null)
         {
-            Debug.LogError("EquipmentManager not found on parent.");
+            try
+            {
+                equipmentManager = GetComponentInParent<EquipmentManager>();
+            }
+            catch (System.Exception)
+            {
+                Debug.LogError("EquipmentManager not found on parent.");
+                throw;
+            }
+            
+           
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
+     
         if (other.CompareTag("Weapon"))
         {
             Weapon weapon = other.GetComponent<Weapon>();
@@ -34,7 +45,7 @@ public class PickupManager : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+   /* void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Weapon"))
         {
@@ -44,5 +55,5 @@ public class PickupManager : MonoBehaviour
                 equipmentManager.HandleWeaponDrop(weapon);
             }
         }
-    }
+    }*/
 }

@@ -1,3 +1,6 @@
+// Weapon Script
+// Role: Encapsulates weapon-specific logic.
+// Functionality: Stores weapon attributes and handles weapon-specific behaviors.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
