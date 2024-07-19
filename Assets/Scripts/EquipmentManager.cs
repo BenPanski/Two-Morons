@@ -1,12 +1,8 @@
 using UnityEngine;
 
-// EquipmentManager Script
-// Role: Manages equipping and positioning of weapons, and handles weapon-specific attacks.
-// Functionality: Stores the currently equipped weapon, equips new weapons, positions them correctly, and handles attacking with the current weapon.
-
 public class EquipmentManager : MonoBehaviour
 {
-    public Weapon CurrentWeapon { get; private set; }
+    [SerializeField] public Weapon CurrentWeapon;
     public Transform attackPoint; // The point from which the weapon will attack
     public float attackForce = 10f; // The force used in attacks
 
@@ -22,7 +18,7 @@ public class EquipmentManager : MonoBehaviour
         weapon.transform.SetParent(transform);
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
-        ((Spear)weapon).Equip();
+        weapon.Equip();
     }
 
     public void HandleWeaponDrop(Weapon weapon)
@@ -30,17 +26,22 @@ public class EquipmentManager : MonoBehaviour
         // Drop the weapon
         if (CurrentWeapon == weapon)
         {
-            ((Spear)weapon).Drop();
+            weapon.Drop();
             CurrentWeapon = null;
         }
     }
 
-    // Method to attack with the current weapon
     public void Attack()
     {
         if (CurrentWeapon != null)
         {
             CurrentWeapon.Attack(attackPoint, attackForce);
+
+            // If it's a spear and it should be dropped after attacking
+            if (CurrentWeapon.DropAfterAttack)
+            {
+                HandleWeaponDrop(CurrentWeapon);
+            }
         }
     }
 }

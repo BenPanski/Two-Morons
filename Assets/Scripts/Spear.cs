@@ -1,9 +1,5 @@
 using UnityEngine;
 
-// Spear Script
-// Role: Handles specific behavior for the spear weapon.
-// Functionality: Implements the spear throwing logic and manages its physics states.
-
 public class Spear : Weapon
 {
     [SerializeField]
@@ -18,19 +14,22 @@ public class Spear : Weapon
 
     private void InitializeSpear()
     {
-        // Ensure the Rigidbody component is set up correctly
         rb = GetComponent<Rigidbody>();
         if (rb == null)
         {
             rb = gameObject.AddComponent<Rigidbody>();
         }
-
-        // Ensure the spear is stationary initially
         SetPhysicsState(isKinematic: true, useGravity: false);
     }
 
     public override void Attack(Transform attackPoint, float attackForce)
     {
+        if (!IsEquipped)
+        {
+            Debug.LogWarning("Attempting to attack with an unequipped weapon.");
+            return;
+        }
+
         // Detach the spear from the player and enable physics
         transform.SetParent(null);
         transform.position = attackPoint.position;
@@ -44,18 +43,16 @@ public class Spear : Weapon
         IsEquipped = false;
     }
 
-    public void Equip()
+    public override void Equip()
     {
-        // Disable physics when equipped
+        base.Equip();
         SetPhysicsState(isKinematic: true, useGravity: false);
-        IsEquipped = true;
     }
 
-    public void Drop()
+    public override void Drop()
     {
-        // Enable physics when dropped
+        base.Drop();
         SetPhysicsState(isKinematic: false, useGravity: true);
-        IsEquipped = false;
     }
 
     private void SetPhysicsState(bool isKinematic, bool useGravity)

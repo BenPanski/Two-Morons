@@ -65,7 +65,10 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        equipmentManager.Attack();
+        if (equipmentManager.CurrentWeapon)
+        {
+            equipmentManager.Attack();
+        }
     }
 
     void Shoot()
