@@ -328,6 +328,7 @@ MonoBehaviour:
   rotateSpeed: 5
   bulletPrefab: {fileID: 0}
   bulletSpawnPoint: {fileID: 0}
+  equipmentManager: {fileID: 0}
 --- !u!114 &2186914367984165084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,14 +552,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8490008073570027282}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.992, y: 0.17500001, z: -0.058}
   m_LocalScale: {x: 0.47054422, y: 0.47054422, z: 0.47054422}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7578590376637359339}
   m_Father: {fileID: 3820554273581007535}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &7116664768625216571
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -621,8 +622,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28386f87f0de241bbbf117595a202a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EquippedWeapon: {fileID: 0}
-  WeaponSocket: {fileID: 7578590376637359339}
+  attackPoint: {fileID: 0}
+  attackForce: 10
 --- !u!1 &8542846327065392385
 GameObject:
   m_ObjectHideFlags: 0

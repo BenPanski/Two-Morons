@@ -35,7 +35,7 @@ public class PickupManager : MonoBehaviour
         if (other.CompareTag("Weapon"))
         {
             Weapon weapon = other.GetComponent<Weapon>();
-            if (weapon != null)
+            if (weapon != null && !weapon.IsEquipped)
             {
                 equipmentManager.HandleWeaponPickup(weapon);
             }

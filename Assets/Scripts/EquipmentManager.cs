@@ -12,8 +12,14 @@ public class EquipmentManager : MonoBehaviour
 
     public void HandleWeaponPickup(Weapon weapon)
     {
+        if (CurrentWeapon != null)
+        {
+            HandleWeaponDrop(CurrentWeapon);
+        }
+
         // Equip the weapon
         CurrentWeapon = weapon;
+        weapon.IsEquipped = true;
         weapon.transform.SetParent(transform);
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
@@ -24,6 +30,7 @@ public class EquipmentManager : MonoBehaviour
         // Drop the weapon
         if (CurrentWeapon == weapon)
         {
+            CurrentWeapon.IsEquipped = false;
             CurrentWeapon = null;
         }
         weapon.transform.SetParent(null);
