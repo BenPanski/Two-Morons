@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnPlayers();
+       // SpawnPlayers();
     }
 
-    private void SpawnPlayers()
+   /* private void SpawnPlayers()
     {
         for (int i = 0; i < spawnPoints.Length; i++)
         {
@@ -31,5 +31,5 @@ public class GameManager : MonoBehaviour
             // Add player to the CinemachineTargetGroup
             targetGroup.AddMember(player.transform, 1f, 2f);
         }
-    }
+    }*/
 }
