@@ -19,10 +19,10 @@ public class EquipmentManager : MonoBehaviour
 
         // Equip the weapon
         CurrentWeapon = weapon;
-        weapon.IsEquipped = true;
         weapon.transform.SetParent(transform);
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
+        ((Spear)weapon).Equip();
     }
 
     public void HandleWeaponDrop(Weapon weapon)
@@ -30,10 +30,9 @@ public class EquipmentManager : MonoBehaviour
         // Drop the weapon
         if (CurrentWeapon == weapon)
         {
-            CurrentWeapon.IsEquipped = false;
+            ((Spear)weapon).Drop();
             CurrentWeapon = null;
         }
-        weapon.transform.SetParent(null);
     }
 
     // Method to attack with the current weapon

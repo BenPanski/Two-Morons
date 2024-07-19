@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     // This method must match the signature expected by the PlayerInput component
     public void OnAttack(InputValue value)
     {
+        print("Attack!");
         if (value.isPressed)
         {
             Attack();
