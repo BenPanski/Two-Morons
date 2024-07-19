@@ -1,46 +1,40 @@
-// EquipmentManager Script
-// Role: Manages equipping and positioning of weapons.
-// Functionality: Stores the equipped weapon, equips new weapons, and handles picking up and dropping weapons.
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+// EquipmentManager Script
+// Role: Manages equipping and positioning of weapons, and handles weapon-specific attacks.
+// Functionality: Stores the currently equipped weapon, equips new weapons, positions them correctly, and handles attacking with the current weapon.
 
 public class EquipmentManager : MonoBehaviour
 {
-    [SerializeField] Weapon EquippedWeapon;
-    [SerializeField] Transform WeaponSocket;
-
-    public void EquipWeapon(Weapon weapon)
-    {
-        if (EquippedWeapon != null)
-        {
-            // Logic to handle unequipping the current weapon, if necessary
-            EquippedWeapon.transform.parent = null;
-        }
-
-        EquippedWeapon = weapon;
-        weapon.transform.parent = WeaponSocket;
-        weapon.transform.localPosition = Vector3.zero;
-        weapon.transform.localRotation = Quaternion.identity;
-        // Add any additional logic for equipping the weapon (e.g., enabling weapon-specific scripts)
-    }
+    public Weapon CurrentWeapon { get; private set; }
+    public Transform attackPoint; // The point from which the weapon will attack
+    public float attackForce = 10f; // The force used in attacks
 
     public void HandleWeaponPickup(Weapon weapon)
     {
-        if (EquippedWeapon == null)
-        {
-            EquipWeapon(weapon);
-        }
+        // Equip the weapon
+        CurrentWeapon = weapon;
+        weapon.transform.SetParent(transform);
+        weapon.transform.localPosition = Vector3.zero;
+        weapon.transform.localRotation = Quaternion.identity;
     }
 
-   /* public void HandleWeaponDrop(Weapon weapon)
+    public void HandleWeaponDrop(Weapon weapon)
     {
-        if (EquippedWeapon == weapon)
+        // Drop the weapon
+        if (CurrentWeapon == weapon)
         {
-            EquippedWeapon = null;
-            // Logic to handle dropping the weapon, if necessary
-            weapon.transform.parent = null;
-            // Add any additional logic for dropping the weapon (e.g., disabling weapon-specific scripts)
+            CurrentWeapon = null;
         }
-    }*/
+        weapon.transform.SetParent(null);
+    }
+
+    // Method to attack with the current weapon
+    public void Attack()
+    {
+        if (CurrentWeapon != null)
+        {
+            CurrentWeapon.Attack(attackPoint, attackForce);
+        }
+    }
 }

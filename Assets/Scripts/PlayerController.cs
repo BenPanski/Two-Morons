@@ -1,8 +1,9 @@
-// PlayerMovement Script
-// Role: Manages player movement and rotation.
-// Functionality: Reads input, moves the player character, and rotates it towards the direction of movement.
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+// PlayerController Script
+// Role: Manages player movement, rotation, and player actions such as attacking.
+// Functionality: Reads input, moves the player character, rotates it towards the direction of movement, and handles attacking via EquipmentManager.
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,7 +13,18 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
 
+    public EquipmentManager equipmentManager; // Reference to the EquipmentManager
+
     private Vector2 moveInput;
+
+    void Start()
+    {
+        // Ensure references are set
+        if (equipmentManager == null)
+        {
+            equipmentManager = GetComponentInChildren<EquipmentManager>();
+        }
+    }
 
     void Update()
     {
@@ -26,11 +38,11 @@ public class PlayerController : MonoBehaviour
     }
 
     // This method must match the signature expected by the PlayerInput component
-    public void OnShoot(InputValue value)
+    public void OnAttack(InputValue value)
     {
         if (value.isPressed)
         {
-            Shoot();
+            Attack();
         }
     }
 
@@ -48,6 +60,11 @@ public class PlayerController : MonoBehaviour
     {
         Quaternion targetRotation = Quaternion.LookRotation(movement, Vector3.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * moveSpeed);
+    }
+
+    void Attack()
+    {
+        equipmentManager.Attack();
     }
 
     void Shoot()
