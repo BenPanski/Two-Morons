@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,19 +33,35 @@ public class PlayerController : MonoBehaviour
     }
 
     // This method must match the signature expected by the PlayerInput component
-    public void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = value.Get<Vector2>();
+        moveInput = context.ReadValue<Vector2>();
     }
 
     // This method must match the signature expected by the PlayerInput component
-    public void OnAttack(InputValue value)
+    public void OnButton(InputAction.CallbackContext context)
     {
-        print("Attack!");
-        if (value.isPressed)
+        if (context.started)
         {
-            Attack();
+            PressButton();
         }
+        else if (context.canceled)
+        {
+            ReleaseButton();
+        }
+      
+
+    }
+
+    private void ReleaseButton()
+    {
+        Attack();
+    }
+
+    private void PressButton()
+    {
+        equipmentManager.HandleWeaponPickup();
+
     }
 
     void Move()
