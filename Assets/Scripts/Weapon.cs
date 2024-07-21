@@ -7,8 +7,14 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     public float damage;
-    public bool DropAfterAttack { get; set; } // Indicates if the weapon should be dropped after attacking
+    [SerializeField] private bool dropAfterAttack; // Indicates if the weapon should be dropped after attacking
     private bool isEquipped; // Backing field for IsEquipped property
+
+    public bool DropAfterAttack
+    {
+        get { return dropAfterAttack; }
+        set { dropAfterAttack = value; }
+    }
 
     public bool IsEquipped
     {

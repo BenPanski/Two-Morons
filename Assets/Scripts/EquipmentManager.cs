@@ -37,7 +37,7 @@ public class EquipmentManager : MonoBehaviour
         {
             CurrentWeapon.Attack(attackPoint, attackForce);
 
-            // If it's a spear and it should be dropped after attacking
+            // If it should be dropped after attacking
             if (CurrentWeapon.DropAfterAttack)
             {
                 HandleWeaponDrop(CurrentWeapon);

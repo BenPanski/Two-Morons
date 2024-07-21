@@ -121,7 +121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  dropAfterAttack: 1
   throwForce: 30
+  rb: {fileID: 6837376752399638372}
 --- !u!54 &6837376752399638372
 Rigidbody:
   m_ObjectHideFlags: 0

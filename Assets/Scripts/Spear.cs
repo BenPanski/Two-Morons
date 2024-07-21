@@ -4,8 +4,7 @@ public class Spear : Weapon
 {
     [SerializeField]
     private float throwForce = 10f; // Recommended value: 10
-
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     void Awake()
     {
@@ -14,6 +13,10 @@ public class Spear : Weapon
 
     private void InitializeSpear()
     {
+        if (rb)
+        {
+            return;
+        }
         rb = GetComponent<Rigidbody>();
         if (rb == null)
         {
