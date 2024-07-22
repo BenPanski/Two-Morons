@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "4ccddfd9-33b2-4984-8c81-0a3b20724c5e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Dodge",
                     "type": "Button",
                     "id": "d6fb23df-7556-4315-b3a1-6acf7760b9c3",
@@ -135,12 +144,12 @@
                 },
                 {
                     "name": "",
-                    "id": "a9e3d16d-1d6b-4f49-85ca-da5b1f9616ba",
-                    "path": "<Keyboard>/space",
+                    "id": "16c1636b-4cc8-49da-a9bd-a7d8534b8f3b",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Button",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -154,6 +163,15 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "b1f7b381-e448-4a45-9117-69a8b24faae1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "59140aec-68d1-4c49-a450-3582c5edacde",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -179,28 +197,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "aa2e855c-0d55-4c15-925f-fbfdebca7bfd",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c88fe500-fb80-47a5-9ecc-d7fd613a5dee",
-                    "path": "<Gamepad>/dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "d2fb5688-f913-4116-b723-93480cee4e14",
@@ -270,7 +266,7 @@
                 {
                     "name": "",
                     "id": "ecd98134-56b6-470f-994f-bfa2a01873e3",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -280,12 +276,12 @@
                 },
                 {
                     "name": "",
-                    "id": "e2efb9a6-fbc9-4cb8-a308-36e2ad4bebb2",
-                    "path": "<Keyboard>/g",
+                    "id": "c1dc6627-0f12-417d-bd73-daf114dee500",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Button",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

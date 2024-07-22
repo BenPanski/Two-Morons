@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 // PlayerController Script
 // Role: Manages player movement, rotation, and player actions such as attacking.
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public EquipmentManager equipmentManager; // Reference to the EquipmentManager
 
     private Vector2 moveInput;
+    private Vector2 rotateInput;
 
     void Start()
     {
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        Rotate();
     }
 
     // This method must match the signature expected by the PlayerInput component
@@ -52,7 +55,11 @@ public class PlayerController : MonoBehaviour
       
 
     }
-
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        print("Aiming");
+        rotateInput = context.ReadValue<Vector2>();
+    }
     private void ReleaseButton()
     {
         Attack();
@@ -70,16 +77,23 @@ public class PlayerController : MonoBehaviour
         if (movement.magnitude > 0)
         {
             transform.Translate(movement, Space.World);
-            RotateTowardsMovementDirection(movement * rotateSpeed * Time.deltaTime);
         }
     }
-
+    void Rotate()
+    {
+        if (rotateInput.magnitude > 0)
+        {
+            Vector3 lookDirection = new Vector3(rotateInput.x, 0, rotateInput.y);
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
+        }
+    }
     void RotateTowardsMovementDirection(Vector3 movement)
     {
         Quaternion targetRotation = Quaternion.LookRotation(movement, Vector3.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * moveSpeed);
     }
-
+   
     void Attack()
     {
         if (equipmentManager.CurrentWeapon)
