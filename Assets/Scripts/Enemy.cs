@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Enemy : MonoBehaviour, IDamageable
+{
+    public float health = 100f;
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        // Handle enemy death (e.g., play animation, remove from scene)
+        print(this.name + " enemy died");
+        this.gameObject.SetActive(false);
+    }
+
+   
+}

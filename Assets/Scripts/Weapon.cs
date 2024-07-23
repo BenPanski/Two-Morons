@@ -9,7 +9,7 @@ public abstract class Weapon : MonoBehaviour
     public float damage;
     [SerializeField] private bool dropAfterAttack; // Indicates if the weapon should be dropped after attacking
     private bool isEquipped; // Backing field for IsEquipped property
-
+    private int firingPlayer;
     public bool DropAfterAttack
     {
         get { return dropAfterAttack; }
@@ -22,8 +22,11 @@ public abstract class Weapon : MonoBehaviour
         protected set { isEquipped = value; }
     }
 
-    // Abstract method for attacking, to be implemented by subclasses
-    public abstract void Attack(Transform attackPoint, float attackForce);
+    //  method for attacking, assignes the firing player by checking for the closest player
+    public virtual void Attack(Transform attackPoint, float attackForce) 
+    {
+        firingPlayer = PlayerManager.Instance.GetClosestPlayerNumber(this.transform);
+    }
 
     // Method to equip the weapon
     public virtual void Equip()

@@ -5,23 +5,10 @@ public class Spear : Weapon
     [SerializeField]
     private float throwForce = 10f; // Recommended value: 10
     public Rigidbody rb;
-
-    void Awake()
+    private int firingPlayer;
+    private void Awake()
     {
-        InitializeSpear();
-    }
-
-    private void InitializeSpear()
-    {
-        if (rb)
-        {
-            return;
-        }
-        rb = GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            rb = gameObject.AddComponent<Rigidbody>();
-        }
+       // InitializeRigidbody();
         SetPhysicsState(isKinematic: true, useGravity: false);
     }
 
@@ -45,7 +32,10 @@ public class Spear : Weapon
         // Mark the spear as not equipped
         IsEquipped = false;
     }
-
+    public void SetFiringPlayer(int player)
+    {
+        firingPlayer = player;
+    }
     public override void Equip()
     {
         base.Equip();
@@ -62,5 +52,35 @@ public class Spear : Weapon
     {
         rb.isKinematic = isKinematic;
         rb.useGravity = useGravity;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Check if the collided object implements IDamageable
+        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+        if (damageable != null)
+        {
+            // Apply damage to the enemy
+            damageable.TakeDamage(damage);
+
+            // Bounce towards the other player
+            Vector3 otherPlayer = PlayerManager.Instance.GetPlayerPosition((3- firingPlayer));
+            if (otherPlayer != null)
+            {
+                Vector3 directionToOtherPlayer = (otherPlayer - transform.position).normalized;
+                rb.velocity = directionToOtherPlayer * throwForce; // You can adjust throwForce as needed
+            }
+            else
+            {
+                print("No other player found");
+            }
+
+            // Increase bounce count and check if it exceeds maxBounces
+            /*currentBounces++;
+            if (currentBounces >= maxBounces)
+            {
+                Destroy(gameObject);
+            }*/
+        }
     }
 }
