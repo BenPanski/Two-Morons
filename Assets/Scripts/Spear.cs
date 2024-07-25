@@ -5,9 +5,13 @@ public class Spear : Weapon
     [SerializeField]
     private float throwForce = 10f; // Recommended value: 10
     public Rigidbody rb;
-    private int firingPlayer;
+    public Material MyMat;
+   public Color MyOriginalColor;
+ 
+  
     private void Awake()
     {
+        MyOriginalColor = MyMat.color;
         rb = GetComponent<Rigidbody>();
         if (rb == null)
         {
@@ -17,13 +21,14 @@ public class Spear : Weapon
     }
 
     public override void Attack(Transform attackPoint, float attackForce)
-    { firingPlayer = PlayerManager.Instance.GetClosestPlayerNumber(this.transform);
+    {
         if (!IsEquipped)
         {
             Debug.LogWarning("Attempting to attack with an unequipped weapon.");
             return;
         }
-        firingPlayer = PlayerManager.Instance.GetClosestPlayerNumber(this.transform);
+        SwapMyPlayer();
+        ColorSpear();
         // Detach the spear from the player and enable physics
         transform.SetParent(null);
         transform.position = attackPoint.position;
@@ -38,14 +43,38 @@ public class Spear : Weapon
     }
     public void SetFiringPlayer(int player)
     {
-        firingPlayer = player;
+        MyPlayer = player;
     }
     public override void Equip()
     {
         base.Equip();
+        MyPlayer = PlayerManager.Instance.GetClosestPlayerNumber(this.transform);
+        ColorSpear();
         SetPhysicsState(isKinematic: true, useGravity: false);
     }
-
+    public void SwapMyPlayer() 
+    {
+        if (MyPlayer == 0)
+        {
+            return;
+        }
+        MyPlayer = 3 - MyPlayer;
+    }
+    private void ColorSpear()
+    {
+        if (MyPlayer != 0)
+        {
+            MyMat.color = PlayerManager.Instance.GetPlayerColor(MyPlayer);
+        }
+        else
+        {
+            MyMat.color = MyOriginalColor;
+        }
+    }
+    private void OnDisable()
+    {
+        MyMat.color = MyOriginalColor;
+    }
     public override void Drop()
     {
         base.Drop();
@@ -60,6 +89,10 @@ public class Spear : Weapon
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!collision.gameObject.CompareTag("Enemy"))
+        {
+            return;
+        }
         // Check if the collided object implements IDamageable
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
@@ -68,7 +101,7 @@ public class Spear : Weapon
             damageable.TakeDamage(damage);
 
             // Bounce towards the other player
-            Vector3 otherPlayer = PlayerManager.Instance.GetPlayerPosition((3- firingPlayer));
+            Vector3 otherPlayer = PlayerManager.Instance.GetPlayerPosition((MyPlayer));
             if (otherPlayer != null)
             {
                 Vector3 directionToOtherPlayer = (otherPlayer - transform.position).normalized;

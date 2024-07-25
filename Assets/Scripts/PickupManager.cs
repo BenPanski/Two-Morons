@@ -10,6 +10,7 @@ using static UnityEditor.Progress;
 public class PickupManager : MonoBehaviour
 {
     public EquipmentManager equipmentManager;
+    private int MyPlayerIndex;
     public List<Weapon> WeaponsInRange = new List<Weapon>();
 
     void Start()
@@ -19,6 +20,7 @@ public class PickupManager : MonoBehaviour
 
     private void FindReferences()
     {
+            MyPlayerIndex = PlayerManager.Instance.GetClosestPlayerNumber(this.transform);
         // Find the EquipmentManager on the player
         if (equipmentManager == null)
         {
@@ -38,7 +40,12 @@ public class PickupManager : MonoBehaviour
     {
         if (other.CompareTag("Weapon"))
         {
-            WeaponsInRange.Add(other.GetComponent<Weapon>());
+            Weapon weapon = other.GetComponent<Weapon>();
+            if (weapon.MyPlayer == MyPlayerIndex || weapon.MyPlayer == 0)
+            {
+                WeaponsInRange.Add(weapon);
+            }
+            
             /* Weapon weapon = other.GetComponent<Weapon>();
              if (weapon != null && !weapon.IsEquipped)
              {

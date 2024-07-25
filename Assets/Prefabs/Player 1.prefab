@@ -324,8 +324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964ed8f780faf864db9b8cef8fe35267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rotateSpeed: 5
+  moveSpeed: 10
+  rotateSpeed: 10
   bulletPrefab: {fileID: 0}
   bulletSpawnPoint: {fileID: 0}
   equipmentManager: {fileID: 4372447869876220362}
@@ -757,7 +757,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.197, z: 0}
-  m_LocalScale: {x: 1.6394525, y: 1.6394525, z: 1.6394525}
+  m_LocalScale: {x: 2.6972272, y: 2.6972272, z: 2.6972272}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3820554273581007535}

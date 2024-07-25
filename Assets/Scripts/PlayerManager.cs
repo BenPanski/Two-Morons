@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }
+    [SerializeField] Color Player1Color;
+    [SerializeField] Color Player2Color;
 
     public Transform player1;
     public Transform player2;
@@ -101,5 +103,17 @@ public class PlayerManager : MonoBehaviour
         return Vector3.negativeInfinity;
     }
 
-    
+    public Color GetPlayerColor(int playerIndex) 
+    {
+        print("Player index: " + playerIndex);
+        if (playerIndex == 1 && player1 != null)
+        {
+            return Player1Color;
+        }
+        else if (playerIndex == 2 && player2 != null)
+        {
+            return Player2Color;
+        }
+        return Color.white;
+    }
 }

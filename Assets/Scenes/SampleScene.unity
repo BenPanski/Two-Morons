@@ -733,6 +733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8351a4b62183c4d972c389a9402338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player1Color: {r: 1, g: 0.107282236, b: 0, a: 1}
+  Player2Color: {r: 0.58017635, g: 1, b: 0, a: 0}
   player1: {fileID: 2085508940}
   player2: {fileID: 3820554274480383245}
 --- !u!4 &1027199590
@@ -1101,6 +1103,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4015767474594585294, guid: 2ce9884b12dbc1b49b84afb92701d99d, type: 3}
+      propertyPath: MyMat
+      value: 
+      objectReference: {fileID: 2100000, guid: d6fb54ffea9eefc4284e7975167a3b4e, type: 2}
+    - target: {fileID: 4015767474594585294, guid: 2ce9884b12dbc1b49b84afb92701d99d, type: 3}
+      propertyPath: damage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4015767474594585294, guid: 2ce9884b12dbc1b49b84afb92701d99d, type: 3}
+      propertyPath: throwForce
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4015767474594585294, guid: 2ce9884b12dbc1b49b84afb92701d99d, type: 3}
       propertyPath: DropAfterAttack
       value: 1
