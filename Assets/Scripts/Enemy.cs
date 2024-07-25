@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     public float health = 100f;
+    public int XPReward = 1;
+
 
     public void TakeDamage(float damage)
     {
@@ -18,6 +20,7 @@ public class Enemy : MonoBehaviour, IDamageable
     void Die()
     {
         // Handle enemy death (e.g., play animation, remove from scene)
+        SharedXPManager.Instance.AddXP(XPReward);
         print(this.name + " enemy died");
         this.gameObject.SetActive(false);
     }
