@@ -8,18 +8,22 @@ public class Spear : Weapon
     private int firingPlayer;
     private void Awake()
     {
-       // InitializeRigidbody();
+        rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody component is missing on this GameObject.");
+        }
         SetPhysicsState(isKinematic: true, useGravity: false);
     }
 
     public override void Attack(Transform attackPoint, float attackForce)
-    {
+    { firingPlayer = PlayerManager.Instance.GetClosestPlayerNumber(this.transform);
         if (!IsEquipped)
         {
             Debug.LogWarning("Attempting to attack with an unequipped weapon.");
             return;
         }
-
+        firingPlayer = PlayerManager.Instance.GetClosestPlayerNumber(this.transform);
         // Detach the spear from the player and enable physics
         transform.SetParent(null);
         transform.position = attackPoint.position;
