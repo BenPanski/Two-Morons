@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayerLevelUp() 
     {
         Playerlevel++;
+      // UIManager.Instance.OnUpgradeSelection();
         TogglePause();
         // show level up screen
         // Increase the player's level by 1
