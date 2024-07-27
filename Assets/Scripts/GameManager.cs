@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using static Cinemachine.DocumentationSortingAttribute;
+using UnityEngine.Device;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,7 +10,12 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Transform[] spawnPoints;
     public CinemachineTargetGroup targetGroup;
-    public int Playerlevel;
+    [SerializeField] UIManager uiManager = UIManager.Instance;
+    [SerializeField] UpgradePoolManager upgradePoolManager = UpgradePoolManager.Instance;
+    [SerializeField] PlayersManager playersManager = PlayersManager.Instance;
+    private int PlayerNumberToSelect = 1;
+
+
     private void OnEnable()
     {
         if (Instance != null && Instance != this)
@@ -41,16 +48,57 @@ public class GameManager : MonoBehaviour
              targetGroup.AddMember(player.transform, 1f, 2f);
          }
      }*/
-    public void OnPlayerLevelUp() 
+    public void OnPlayersLevelUp() 
     {
-        Playerlevel++;
-      // UIManager.Instance.OnUpgradeSelection();
-        TogglePause();
-        // show level up screen
-        // Increase the player's level by 1
-        // Increase the player's stats
+        if (AreThereMoreSelections())
+        {
+            TogglePause();
+        }
+        uiManager.OnUpgradeSelection(upgradePoolManager.GiveUpgrade(), PlayerNumberToSelect);// fill with upgrades and show level up screen
+       
+
+    }
+    public void ManageChosenUpgrade(int UpgradeIndex)
+    {
+        if (PlayerNumberToSelect == 1)
+        {
+            playersManager.player1Stats.AddUpgrade(upgradePoolManager.UpgradesToSend[UpgradeIndex]);// add the upgrade to the player's stats
+        }
+        else if (PlayerNumberToSelect == 2)
+        {
+            playersManager.player2Stats.AddUpgrade(upgradePoolManager.UpgradesToSend[UpgradeIndex]); // add the upgrade to the player's stats
+        }
+        upgradePoolManager.RemoveUpgradeFromPool(upgradePoolManager.UpgradesToSend[UpgradeIndex]);// remove choosen upgrades from pool
+
+
+
+        if (AreThereMoreSelections())
+        {
+            TogglePlayer();
+            OnPlayersLevelUp();
+        }
+        else
+        {
+            TogglePlayer();
+            uiManager.CloseUpgradeSelection();
+            TogglePause();
+        }
+        
     }
 
+    private void TogglePlayer()
+    {
+        PlayerNumberToSelect = 3 - PlayerNumberToSelect;
+    }
+
+    public bool AreThereMoreSelections() 
+    {
+        if (PlayerNumberToSelect == 1)  
+        {
+          return  true; // if the first player
+        }
+        return false;// if the second player
+    }
     public void TogglePause()
     {
         if (Time.timeScale == 0)

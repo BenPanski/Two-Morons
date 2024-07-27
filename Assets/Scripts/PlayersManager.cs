@@ -1,14 +1,15 @@
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayersManager : MonoBehaviour
 {
-    public static PlayerManager Instance { get; private set; }
+    public static PlayersManager Instance { get; private set; }
     [SerializeField] Color Player1Color;
     [SerializeField] Color Player2Color;
 
     public Transform player1;
     public Transform player2;
-
+    public PlayerStats player1Stats;
+    public PlayerStats player2Stats;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -19,6 +20,15 @@ public class PlayerManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        
+        if (player1Stats == null)
+        {
+            player1Stats = player1.gameObject.GetComponent<PlayerStats>();
+        }
+        if (player2Stats == null)
+        {
+            player2Stats = player2.gameObject.GetComponent<PlayerStats>();
+        }
     }
 
     public Transform GetOtherPlayer(Transform currentPlayer)
@@ -105,7 +115,6 @@ public class PlayerManager : MonoBehaviour
 
     public Color GetPlayerColor(int playerIndex) 
     {
-        print("Player index: " + playerIndex);
         if (playerIndex == 1 && player1 != null)
         {
             return Player1Color;

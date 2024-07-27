@@ -48,7 +48,7 @@ public class Spear : Weapon
     public override void Equip()
     {
         base.Equip();
-        MyPlayer = PlayerManager.Instance.GetClosestPlayerNumber(this.transform);
+        MyPlayer = PlayersManager.Instance.GetClosestPlayerNumber(this.transform);
         ColorSpear();
         SetPhysicsState(isKinematic: true, useGravity: false);
     }
@@ -64,7 +64,7 @@ public class Spear : Weapon
     {
         if (MyPlayer != 0)
         {
-            MyMat.color = PlayerManager.Instance.GetPlayerColor(MyPlayer);
+            MyMat.color = PlayersManager.Instance.GetPlayerColor(MyPlayer);
         }
         else
         {
@@ -101,7 +101,7 @@ public class Spear : Weapon
             damageable.TakeDamage(damage);
 
             // Bounce towards the other player
-            Vector3 otherPlayer = PlayerManager.Instance.GetPlayerPosition((MyPlayer));
+            Vector3 otherPlayer = PlayersManager.Instance.GetPlayerPosition((MyPlayer));
             if (otherPlayer != null)
             {
                 Vector3 directionToOtherPlayer = (otherPlayer - transform.position).normalized;

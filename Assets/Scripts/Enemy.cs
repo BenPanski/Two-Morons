@@ -6,13 +6,15 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     public float health = 100f;
     public int XPReward = 1;
+    private bool Dead;
 
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && !Dead)
         {
+            Dead = true;
             Die();
         }
     }

@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
     }
     public void OnAim(InputAction.CallbackContext context)
     {
-        print("Aiming");
         rotateInput = context.ReadValue<Vector2>();
     }
     private void ReleaseButton()

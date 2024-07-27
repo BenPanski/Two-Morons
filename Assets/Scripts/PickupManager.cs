@@ -20,7 +20,7 @@ public class PickupManager : MonoBehaviour
 
     private void FindReferences()
     {
-            MyPlayerIndex = PlayerManager.Instance.GetClosestPlayerNumber(this.transform);
+            MyPlayerIndex = PlayersManager.Instance.GetClosestPlayerNumber(this.transform);
         // Find the EquipmentManager on the player
         if (equipmentManager == null)
         {

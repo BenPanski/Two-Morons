@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image[] UpgradeIcons;
     [SerializeField] private TMP_Text[] UpgradeTexts;
     [SerializeField] private TMP_Text PlayerNumberText;
-
+    
     private void OnEnable()
     {
         if (Instance != null && Instance != this)
@@ -23,14 +23,25 @@ public class UIManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    public void OnUpgradeSelection(Image[] upgradeIcons, string[] upgradeText, int playerNumber)
+
+    public void OnUpgradeSelection(List<Upgrade> upgradesFromPool,int PlayerNumber)
     {
-        for (int i = 0; i < upgradeIcons.Length-1; i++)
+        for (int i = 0; i < upgradesFromPool.Count - 1; i++)
         {
-            upgradeText[i] = upgradeText[i];
-            UpgradeIcons[i] = upgradeIcons[i];
+            UpgradeTexts[i].text = upgradesFromPool[i].name;
+            UpgradeIcons[i] = upgradesFromPool[i].icon;
         }
-        PlayerNumberText.text = "Player " + playerNumber;
+        PlayerNumberText.text = "Player " + PlayerNumber;
         UpgradeSelectionScreen.SetActive(true);
+    }
+    public void ChooseUpgrade(int UpgradeIndex) 
+    {
+       GameManager.Instance.ManageChosenUpgrade(UpgradeIndex);
+       
+    }
+
+    public void CloseUpgradeSelection()
+    {
+        UpgradeSelectionScreen.SetActive(false);
     }
 }
