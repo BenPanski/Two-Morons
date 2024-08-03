@@ -27,7 +27,7 @@ public class SharedXPManager : MonoBehaviour
     }
     public void AddXP(int amount)
     {
-        print("Current XP: " + CurrentXP);
+        print("XP before addition: " + CurrentXP);
         CurrentXP += amount;
         // Add the amount of XP to the player's XP
         CheckLevelUp();
@@ -36,9 +36,7 @@ public class SharedXPManager : MonoBehaviour
 
     public void CheckLevelUp()
     {
-        print("Checking level up");
         print("Current XP: " + CurrentXP);
-        print("Current Level xp required: " + LevelRequirments[CurrentLevel].xpRequired);
         if (CurrentXP >= LevelRequirments[CurrentLevel].xpRequired) // Check if the player has enough XP to level up
         {
             

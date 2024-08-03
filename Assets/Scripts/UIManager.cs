@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
 
     public void OnUpgradeSelection(List<Upgrade> upgradesFromPool,int PlayerNumber)
     {
-        for (int i = 0; i < upgradesFromPool.Count - 1; i++)
+        for (int i = 0; i < upgradesFromPool.Count; i++)
         {
             UpgradeTexts[i].text = upgradesFromPool[i].name;
             UpgradeIcons[i] = upgradesFromPool[i].icon;

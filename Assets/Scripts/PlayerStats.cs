@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    List<Upgrade> MyUpgrades = new List<Upgrade>();
+   [SerializeField] List<Upgrade> MyUpgrades = new List<Upgrade>();
     public void AddUpgrade(Upgrade upgrade)
     {
         MyUpgrades.Add(upgrade);
