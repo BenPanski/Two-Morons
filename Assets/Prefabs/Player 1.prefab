@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7422135794942674939}
   - component: {fileID: 5721110471788918169}
   - component: {fileID: 7860440004544912399}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Left Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7578590376637359339}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon Socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 1452971701777092077}
   - component: {fileID: 6076301163980015514}
   - component: {fileID: 5787373592767016796}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Eye Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 2856337181473769112}
   - component: {fileID: 2186914367984165084}
   - component: {fileID: 3795309964513811055}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8301b48461a4b9c4b8da8f2cd854d85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyUpgrades: []
 --- !u!1 &5217102785643039771
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7483363707812453337}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Attack Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +483,7 @@ GameObject:
   - component: {fileID: 46356572794225509}
   - component: {fileID: 3572306267014611647}
   - component: {fileID: 6901520384448392207}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Eye Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +566,7 @@ GameObject:
   - component: {fileID: 1074540477612813948}
   - component: {fileID: 7344128763633468667}
   - component: {fileID: 6915234309434527099}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +650,7 @@ GameObject:
   - component: {fileID: 7116664768625216571}
   - component: {fileID: 6956893297095590732}
   - component: {fileID: 4372447869876220362}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: right hand (Equipment)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +754,7 @@ GameObject:
   - component: {fileID: 6958031258740669708}
   - component: {fileID: 4035880194956133071}
   - component: {fileID: 1604180269366802517}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pickup Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}

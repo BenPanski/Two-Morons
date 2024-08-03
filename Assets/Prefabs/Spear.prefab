@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6461277612256247155}
   - component: {fileID: 4015767474594585294}
   - component: {fileID: 6837376752399638372}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spear
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -120,10 +120,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3971356b43fd249bb6a51b1dd585da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 25
   dropAfterAttack: 1
+  MyPlayer: 0
   throwForce: 30
   rb: {fileID: 6837376752399638372}
+  MyMat: {fileID: 0}
+  MyOriginalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &6837376752399638372
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,7 +166,7 @@ GameObject:
   - component: {fileID: 8944705852488679042}
   - component: {fileID: 8483753712442331584}
   - component: {fileID: 792757843276565250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Collision Colldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
