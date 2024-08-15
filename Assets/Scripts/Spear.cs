@@ -18,6 +18,7 @@ public class Spear : Weapon
             Debug.LogError("Rigidbody component is missing on this GameObject.");
         }
         SetPhysicsState(isKinematic: true, useGravity: false);
+
     }
 
     public override void Attack(Transform attackPoint, float attackForce)
@@ -37,7 +38,7 @@ public class Spear : Weapon
 
         // Apply force to throw the spear
         rb.AddForce(attackPoint.forward * throwForce, ForceMode.Impulse);
-
+        
         // Mark the spear as not equipped
         IsEquipped = false;
     }

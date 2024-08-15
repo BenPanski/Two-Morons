@@ -57,8 +57,54 @@ public class PlayerController : MonoBehaviour
     }
     public void OnAim(InputAction.CallbackContext context)
     {
-        rotateInput = context.ReadValue<Vector2>();
+        // Get the current control scheme
+        var currentControlScheme = context.control.device;
+
+        if (currentControlScheme is Mouse)
+        {
+            // Handle mouse aiming
+            HandleMouseAiming(context);
+        }
+        else if (currentControlScheme is Gamepad)
+        {
+            // Handle controller aiming
+            HandleControllerAiming(context);
+        }
     }
+
+    private void HandleMouseAiming(InputAction.CallbackContext context)
+    {
+        Vector3 mousePosition = context.ReadValue<Vector2>();
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, transform.position);
+
+        if (groundPlane.Raycast(ray, out float enter))
+        {
+            Vector3 hitPoint = ray.GetPoint(enter);
+            Vector3 lookDirection = hitPoint - transform.position;
+
+            // Adjust rotation speed based on distance
+            float distance = lookDirection.magnitude;
+            float adjustedRotateSpeed = rotateSpeed * Mathf.Clamp(distance, 0.5f, 2f); // Adjust these values as needed
+
+            lookDirection.y = 0f; // Ignore vertical difference
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * adjustedRotateSpeed);
+        }
+    }
+
+
+    private void HandleControllerAiming(InputAction.CallbackContext context)
+    {
+        rotateInput = context.ReadValue<Vector2>();
+        if (rotateInput.magnitude > 0)
+        {
+            Vector3 lookDirection = new Vector3(rotateInput.x, 0, rotateInput.y);
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
+        }
+    }
+
     private void ReleaseButton()
     {
         Attack();
