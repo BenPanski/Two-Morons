@@ -106,7 +106,7 @@ public class Spear : Weapon
             if (otherPlayer != null)
             {
                 Vector3 directionToOtherPlayer = (otherPlayer - transform.position).normalized;
-                rb.velocity = directionToOtherPlayer * throwForce; // You can adjust throwForce as needed
+                rb.velocity = directionToOtherPlayer * throwForce/2; // You can adjust throwForce as needed
             }
             else
             {
