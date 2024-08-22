@@ -7,8 +7,8 @@ using UnityEngine.Device;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public GameObject playerPrefab;
-    public Transform[] spawnPoints;
+/*    public GameObject playerPrefab;
+    public Transform[] spawnPoints;*/
     public CinemachineTargetGroup targetGroup;
     [SerializeField] UIManager uiManager = UIManager.Instance;
     [SerializeField] UpgradePoolManager upgradePoolManager = UpgradePoolManager.Instance;
